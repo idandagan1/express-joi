@@ -6,6 +6,7 @@ const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 
@@ -23,18 +24,16 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
   // set locals, only providing error in development
   res.status(err.statusCode).send({ status: err.statusCode, message: err.message });
 });
 
-const PORT = 3000;
-
-app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`));
+app.listen(PORT, () => console.log(`App listening on port ${PORT}`)); // eslint-disable-line
 
 module.exports = app;
