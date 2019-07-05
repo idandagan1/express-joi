@@ -1,9 +1,12 @@
-const express = require('express');
-const router = express.Router();
+const usersController = require('./users');
 
-/* GET home page. */
-router.get('/', (req, res, next) => {
-  res.render('index', { title: 'Express' });
-});
+module.exports = app => {
 
-module.exports = router;
+  /* GET home page. */
+  app.get('/', (req, res, next) => {
+    res.render('index', { title: 'Express' });
+  });
+
+  app.post('/users/login', usersController.validateLogin, usersController.login);
+
+}

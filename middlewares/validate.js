@@ -1,6 +1,6 @@
-const Joi = require('joi');
+const Joi = require('@hapi/joi');
 
-module.exports = (schema, options = { allowUnknown: false, convert: true }, type = 'query') => {
+module.exports = (schema, options = { allowUnknown: false, convert: true }, type = 'body') => {
   return (req, res, next) => {
     const { error } = Joi.validate(req[type], schema, options);
 
